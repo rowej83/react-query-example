@@ -1,7 +1,10 @@
+import React from 'react';
+
 /**
  * An Object that contains some styling for our Modal component.
  */
-export const modalStyles = {
+
+ export const modalStyles = {
   content: {
     top: "50%",
     left: "50%",
@@ -24,14 +27,17 @@ export const modalStyles = {
 export const columns = [
   {
     Header: "User ID",
-    accessor: "userID" // accessor is the "key" in the data
+    accessor: "id" // accessor is the "key" in the data
   },
   {
     Header: "User Full Name",
-    accessor: "userName"
+    accessor: "name"
   },
   {
     Header: "User Name",
-    accessor: "userUserName" // accessor is the "key" in the data
+    accessor: "username" // accessor is the "key" in the data
   }
 ];
+
+
+export const coolLookingCssLoadingSpinner=(<div class="cool-loading-loop"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>);

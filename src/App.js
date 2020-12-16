@@ -2,8 +2,10 @@ import React from "react";
 import Table from "./components/Table";
 import axios from "axios";
 import Modal from "react-modal";
-import { modalStyles, columns } from "./utils";
+import { modalStyles, columns, coolLookingCssLoadingSpinner } from "./utils";
 import { hot } from "react-hot-loader/root";
+import {useUsersList} from "./query-hooks/QueryHooks";
+
 
 // Tells Modal component what DOM element is the root of the app
 Modal.setAppElement("#root");
@@ -25,30 +27,12 @@ function App() {
     setIsOpen(false);
   }
 
+
+  const { status, data:usersData, error, isFetching } = useUsersList();
+  
   /**
    * React.useEffect is used to populate initial list of users on page load.
    */
-  React.useEffect(() => {
-    // axios recieves the users list then we filter the
-    // response to create an array of the info about the users
-    // we want in our table. (userID,userName and userUserName)
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((response) => {
-        const filteredData = [];
-        response.data.forEach((person) => {
-          filteredData.push({
-            userID: person.id,
-            userName: person.name,
-            userUserName: person.username,
-          });
-        });
-        setUsers(filteredData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   /**
    *  displayDetails formats the user details info in to the modal if the userDetail array isn't empty.
@@ -93,6 +77,9 @@ function App() {
       </>
     );
   }
+  if(status==='loading') return coolLookingCssLoadingSpinner;
+
+  if(error) return (<p>An error has occured: {error.message}</p>)
   // our return (or render) value consists of the Table and Modal components.
   return (
     <div>
@@ -100,7 +87,7 @@ function App() {
         setUserDetail={setUserDetail}
         setIsOpen={setIsOpen}
         columns={columns}
-        data={users}
+        data={usersData}
       />
       <Modal
         isOpen={modalIsOpen}
