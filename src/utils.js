@@ -6,6 +6,7 @@ import React from 'react';
 
  export const modalStyles = {
   content: {
+    display:"relative",
     top: "50%",
     left: "50%",
     right: "auto",
@@ -40,4 +41,4 @@ export const columns = [
 ];
 
 
-export const coolLookingCssLoadingSpinner=(<div class="cool-loading-loop"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>);
+export const coolLookingCssLoadingSpinner=(<div className="cool-loading-loop-container"><div className="cool-loading-loop"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>);

@@ -6,38 +6,31 @@ import axios from 'axios';
 // 2. The hook's corresponding get function (i.e. getUsersList, getUserDetail). This function does the async fetching and returns a promise back for react-query to  use for the hook. 
 
 
-// UsersList
+// Users List
 
 const getUsersList = async () => {
     const { data } = await axios.get(
         "https://jsonplaceholder.typicode.com/users"
     );
     return data;
-   const filteredData = [];
-    data.forEach((person) => {
-        filteredData.push({
-            userID: person.id,
-            userName: person.name,
-            userUserName: person.username,
-        });
-    });
-    return filteredData;
 }
 
 export function useUsersList() {
     return useQuery("user-list", getUsersList);
 }
 
-// End UsersList
+// End Users List
 
-// 
+// Get User By Id
 const getUserById = async (userId) => {
     const { data } = await axios.get(
-      `https://jsonplaceholder.typicode.com/users${userId}`
+        `https://jsonplaceholder.typicode.com/users/${userId}`
     );
     return data;
-  };
-  
-  export default function usePost(userId) {
+};
+
+export function useUser(userId) {
     return useQuery(["user", userId], () => getUserById(userId));
-  }
+}
+
+// End Get User By Id

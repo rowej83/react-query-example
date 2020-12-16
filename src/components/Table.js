@@ -6,7 +6,7 @@ import { useTable, useSortBy } from "react-table";
  * and produces it's desired layout
  * @param {props object being deconstructed to columns, data etc..}
  */
-const Table = ({ columns, data, setIsOpen, setUserDetail }) => {
+const Table = ({ columns, data, setIsOpen, setSelectedUserID }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -24,7 +24,7 @@ const Table = ({ columns, data, setIsOpen, setUserDetail }) => {
   return (
     <>
       <small className={"sortNotice"}>
-        Select a column header to sort by that column. 
+        Select a column header to sort by that column.
       </small>
       <table className="minimalistBlack" {...getTableProps()}>
         <thead>
@@ -56,14 +56,10 @@ const Table = ({ columns, data, setIsOpen, setUserDetail }) => {
                 {row.cells.map((cell) => {
                   return (
                     <td
-                      onClick={async () => {
-                        await axios
-                          .get(
-                            `https://jsonplaceholder.typicode.com/users/${row.cells[0].value}`
-                          )
-                          .then((response) => {
-                            setUserDetail(response.data);
-                          });
+                      onClick={() => {
+                        //sets the ID of the selected user which then will trigger the fetching and populating of the users details in the modal
+                        setSelectedUserID(row.cells[0].value);
+                        //opens the modal.
                         setIsOpen(true);
                       }}
                       {...cell.getCellProps()}

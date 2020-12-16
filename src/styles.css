@@ -96,17 +96,34 @@ table.minimalistBlack tfoot td {
   margin-top: 5px;
 }
 
+.userNameHeader{
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  margin-bottom:20px;
+}
+
+.cool-loading-loop-container{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  width:100%;
+}
+
 .cool-loading-loop {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
 }
+
 .cool-loading-loop div {
+ 
   position: absolute;
   width: 6px;
   height: 6px;
-  background: #000000;
+  background: #1C1C1C;
   border-radius: 50%;
   animation: cool-loading-loop 1.2s linear infinite;
 }
