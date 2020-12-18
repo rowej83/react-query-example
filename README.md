@@ -1,6 +1,10 @@
-# empty-project
 
-Empty project.
+Reactjs App to request and display an userslist(table) and userdetail(modal) data via ajax. The data is from https://jsonplaceholder.typicode.com/users
+Includes 2 branchs for how it attempts  to fetch the async data. master branch is regular axios and onEffect
+react-query branch uses react-query's exported functions to generate the data as well as information such as isLoading, error information and more. 
+react-query also provides caching as to not needlessly refetch a remote response we have already.
+
+
 
 ## Building and running on localhost
 
@@ -32,6 +36,3 @@ npm run build-dev
 
 Open the file `dist/index.html` in your browser
 
-## Credits
-
-Made with [createapp.dev](https://createapp.dev/)
